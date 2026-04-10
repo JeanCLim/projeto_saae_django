@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAAE - Monitoramento</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #eee;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: auto; }
+        h1 { 
+            color: #00ff00; /* Verde Neon */
+            text-shadow: 0 0 10px #00ff00;
+            text-align: center;
+        }
+        .aviso-card {
+            background: #111;
+            border: 1px solid #333;
+            border-left: 6px solid #330ea1; /* Rosa Neon */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .bairro-tag {
+            background: #031349;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .data { color: #00d4ff; font-size: 0.9rem; }
+        .status-badge {
+            float: right;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ AVISOS SAAE</h1>
+        
+        {% for aviso in avisos %}
+        <div class="aviso-card">
+            <span class="status-badge">{{ aviso.get_status_display }}</span>
+            <h2 style="margin-top: 0;">{{ aviso.titulo }}</h2>
+            <p>{{ aviso.mensagem }}</p>
+            
+            <div style="margin-bottom: 15px;">
+                <strong>Afetados:</strong> 
+                {% for bairro in aviso.bairros_afetados.all %}
+                    <span class="bairro-tag">{{ bairro.nome }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="data">
+                🗓️ Início: {{ aviso.data_inicio_previsto|date:"d/m H:i" }} <br>
+                ⏳ Previsão de Retorno: {{ aviso.data_fim_previsto|date:"d/m H:i" }}
+            </div>
+        </div>
+        {% empty %}
+        <p style="text-align: center; color: #666;">Tudo normal! Nenhum aviso registrado no momento.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
