@@ -1,4 +1,5 @@
 # ⚠️ SAAE - Monitoramento de Abastecimento (Petrolina-PE)
+![Demonstração](screenshot.png)
 
 Sistema desenvolvido para centralizar e divulgar avisos de interrupção no fornecimento de água para os bairros de Petrolina. O projeto foca em leitura rápida e gerenciamento simplificado.
 
