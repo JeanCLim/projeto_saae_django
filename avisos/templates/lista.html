@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAAE - Sistema de Avisos</title>
+    <style>
+      /* O Tema Escuro e Neon */
+      body {
+        background-color: #0d0d12;
+        color: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #00ffff; /* Ciano Neon */
+        text-shadow:
+          0 0 10px #00ffff,
+          0 0 20px #00ffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .aviso-card {
+        background-color: #1a1a24;
+        border: 1px solid #ff00ff; /* Rosa Neon */
+        box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: 0.3s;
+      }
+      .aviso-card:hover {
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        border-color: #00ffff;
+      }
+      .sem-avisos {
+        text-align: center;
+        color: #ff3333;
+        font-size: 1.2rem;
+        text-shadow: 0 0 10px #ff3333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Monitoramento SAAE - Petrolina</h1>
+
+      {% if avisos %} {% for aviso in avisos %}
+      <div class="aviso-card">
+        <h2>{{ aviso }}</h2>
+      </div>
+      {% endfor %} {% else %}
+      <div class="sem-avisos">
+        <p>Nenhum aviso de falta de água registrado no momento. Tudo normal!</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
